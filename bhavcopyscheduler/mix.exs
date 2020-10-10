@@ -42,7 +42,14 @@ defmodule Bhavcopyscheduler.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      # scheduler lib clustering compliant
+      {:oban, "~> 1.2"},
+      # dev dependencies to improve code quality
+      {:credo, "~> 1.4.0", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.0.0", only: [:dev, :test], runtime: false},
+      {:sobelow, "~> 0.10.2", only: [:dev, :test], runtime: false},
+      {:ex_doc, "~> 0.22.0", only: :dev, runtime: false},
     ]
   end
 
@@ -56,7 +63,16 @@ defmodule Bhavcopyscheduler.MixProject do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate", "test"]
+      test: ["ecto.create --quiet", "ecto.migrate", "test"],
+      # code quality aliases
+      quality: ["format", "credo --strict", "sobelow --verbose", "dialyzer", "test"],
+      "quality.ci": [
+        "test",
+        "format --check-formatted",
+        "credo --strict",
+        "sobelow --exit",
+        "dialyzer --halt-exit-status"
+      ]
     ]
   end
 end
