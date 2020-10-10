@@ -30,6 +30,14 @@ config :bhavcopyscheduler, BhavcopyschedulerWeb.Endpoint,
     ]
   ]
 
+# Scheduler config
+
+config :bhavcopyscheduler, Bhavcopyscheduler.Scheduler,
+  jobs: [
+    # Run daily at 8 am
+    {"0 8 * * *", {Heartbeat, :send, []}},
+  ]
+
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed

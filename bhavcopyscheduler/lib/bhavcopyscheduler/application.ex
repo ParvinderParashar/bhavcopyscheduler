@@ -10,6 +10,8 @@ defmodule Bhavcopyscheduler.Application do
     children = [
       # Start the Ecto repository
       Bhavcopyscheduler.Repo,
+      # Start Scheduler
+      Bhavcopyscheduler.Scheduler,
       # Start the endpoint when the application starts
       BhavcopyschedulerWeb.Endpoint
       # Starts a worker by calling: Bhavcopyscheduler.Worker.start_link(arg)

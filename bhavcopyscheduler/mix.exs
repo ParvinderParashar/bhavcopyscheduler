@@ -54,7 +54,9 @@ defmodule Bhavcopyscheduler.MixProject do
       {:nebulex, "~> 1.2"},
       {:jchash, "~> 0.1"},
       # scheduler lib clustering compliant
-      {:oban, "~> 1.2"},
+      {:quantum, "~> 3.0"},
+      # http client
+      {:httpoison, "~> 1.6"},
       # dev dependencies to improve code quality
       {:credo, "~> 1.4.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0.0", only: [:dev, :test], runtime: false},
