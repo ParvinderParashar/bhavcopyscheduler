@@ -10,7 +10,14 @@ defmodule Bhavcopyscheduler.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+
+      # added for code quality
+      elixirc_options: [warnings_as_errors: true],
+      dialyzer: [
+        plt_file: {:no_warn, "priv/plts/dialyzer.plt"},
+        ignore_warnings: ".dialyzer_ignore.exs"
+      ],
     ]
   end
 
@@ -43,6 +50,9 @@ defmodule Bhavcopyscheduler.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
+      # clustering compliant caching library
+      {:nebulex, "~> 1.2"},
+      {:jchash, "~> 0.1"},
       # scheduler lib clustering compliant
       {:oban, "~> 1.2"},
       # dev dependencies to improve code quality
