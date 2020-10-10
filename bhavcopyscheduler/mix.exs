@@ -13,7 +13,7 @@ defmodule Bhavcopyscheduler.MixProject do
       deps: deps(),
 
       # added for code quality
-      elixirc_options: [warnings_as_errors: true],
+      elixirc_options: [warnings_as_errors: false],
       dialyzer: [
         plt_file: {:no_warn, "priv/plts/dialyzer.plt"},
         ignore_warnings: ".dialyzer_ignore.exs"
